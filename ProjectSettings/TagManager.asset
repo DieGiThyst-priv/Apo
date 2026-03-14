@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Companion
   - Item
+  - Bullet
   layers:
   - Default
   - TransparentFX
