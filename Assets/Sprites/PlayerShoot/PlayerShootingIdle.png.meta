@@ -1,16 +1,19 @@
 fileFormatVersion: 2
-guid: 02d301757ad2fb24f9f744edce2d4b84
+guid: 037b165da7fa13d429f98db22c17b899
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2151609934785772354
-    second: PlayerShootingRight body_0
+      213: 5180995584878031214
+    second: PlayerShootingIdle_0
   - first:
-      213: 637296423095739650
-    second: PlayerShootingRight body_1
+      213: 791680245854488747
+    second: PlayerShootingIdle_1
   - first:
-      213: 105536926077383520
-    second: PlayerShootingRight body_2
+      213: -8547290209570199005
+    second: PlayerShootingIdle_2
+  - first:
+      213: -6472916652094582579
+    second: PlayerShootingIdle_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -119,7 +122,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PlayerShootingRight body_0
+      name: PlayerShootingIdle_0
       rect:
         serializedVersion: 2
         x: 0
@@ -134,14 +137,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: eb484edf922f322e0800000000000000
-      internalID: -2151609934785772354
+      spriteID: e61b58bc80896e740800000000000000
+      internalID: 5180995584878031214
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerShootingRight body_1
+      name: PlayerShootingIdle_1
       rect:
         serializedVersion: 2
         x: 16
@@ -156,14 +159,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 205af3368b128d800800000000000000
-      internalID: 637296423095739650
+      spriteID: ba8c9d53dfc9cfa00800000000000000
+      internalID: 791680245854488747
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerShootingRight body_2
+      name: PlayerShootingIdle_2
       rect:
         serializedVersion: 2
         x: 32
@@ -178,14 +181,36 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 063778d6641f67100800000000000000
-      internalID: 105536926077383520
+      spriteID: 32ae46207dce16980800000000000000
+      internalID: -8547290209570199005
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerShootingRight body_3
+      name: PlayerShootingIdle_3
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dc0113399949b26a0800000000000000
+      internalID: -6472916652094582579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerShootingIdle_4
       rect:
         serializedVersion: 2
         x: 0
@@ -200,14 +225,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6579c24b05befce41ae2e7c5beee96e3
-      internalID: 1954388800
+      spriteID: 2001def1a2afadf43ad9413fefd877ca
+      internalID: 54406345
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerShootingRight body_4
+      name: PlayerShootingIdle_5
       rect:
         serializedVersion: 2
         x: 16
@@ -222,14 +247,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e161945e33957d64cbd98ae8295c335c
-      internalID: -2022277701
+      spriteID: 22aee324cbbc87543be59238f3818c2b
+      internalID: -1287295898
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerShootingRight body_5
+      name: PlayerShootingIdle_6
       rect:
         serializedVersion: 2
         x: 32
@@ -244,8 +269,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3e374cd2e3631eb49a30255613ee5782
-      internalID: -660175763
+      spriteID: f213fb7f5fcf1bb44b36c8ffc5d10895
+      internalID: 2078344958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerShootingIdle_7
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e14a7ea6c44ffbb44a74f50e56fc7bec
+      internalID: -1652302901
       vertices: []
       indices: 
       edges: []
@@ -254,7 +301,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 0b9db543681a9f64680777698789ca1c
+    spriteID: ee34e46d7dd95b34297a6b3840dbaecd
     internalID: 0
     vertices: []
     indices: 
@@ -264,12 +311,14 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      PlayerShootingRight body_0: -2151609934785772354
-      PlayerShootingRight body_1: 637296423095739650
-      PlayerShootingRight body_2: 105536926077383520
-      PlayerShootingRight body_3: 1954388800
-      PlayerShootingRight body_4: -2022277701
-      PlayerShootingRight body_5: -660175763
+      PlayerShootingIdle_0: 5180995584878031214
+      PlayerShootingIdle_1: 791680245854488747
+      PlayerShootingIdle_2: -8547290209570199005
+      PlayerShootingIdle_3: -6472916652094582579
+      PlayerShootingIdle_4: 54406345
+      PlayerShootingIdle_5: -1287295898
+      PlayerShootingIdle_6: 2078344958
+      PlayerShootingIdle_7: -1652302901
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
