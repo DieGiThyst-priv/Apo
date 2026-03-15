@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: IdleDown
+  m_Name: PlayerIdleGun_UP
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,7 +21,7 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 7408791951343775973, guid: 823ffb388c7636a458dfc8c1ff8216a7, type: 3}
+      value: {fileID: -6472916652094582579, guid: 037b165da7fa13d429f98db22c17b899, type: 3}
     attribute: m_Sprite
     path: UpperBodySprite
     classID: 212
@@ -30,7 +30,7 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: -2164072109898618113, guid: 823ffb388c7636a458dfc8c1ff8216a7, type: 3}
+      value: {fileID: -1652302901, guid: 037b165da7fa13d429f98db22c17b899, type: 3}
     attribute: m_Sprite
     path: LowerBodySprite
     classID: 212
@@ -62,8 +62,8 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 7408791951343775973, guid: 823ffb388c7636a458dfc8c1ff8216a7, type: 3}
-    - {fileID: -2164072109898618113, guid: 823ffb388c7636a458dfc8c1ff8216a7, type: 3}
+    - {fileID: -6472916652094582579, guid: 037b165da7fa13d429f98db22c17b899, type: 3}
+    - {fileID: -1652302901, guid: 037b165da7fa13d429f98db22c17b899, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
