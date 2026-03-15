@@ -31,7 +31,7 @@ AnimationClip:
     - time: 1
       value: {fileID: -2271658469917934647, guid: 70fbc492841c26847a3729c3fc8c4ebe, type: 3}
     attribute: m_Sprite
-    path: Character_Idle_0
+    path: UpperBodySprite
     classID: 212
     script: {fileID: 0}
     flags: 2
@@ -48,7 +48,7 @@ AnimationClip:
     - time: 1
       value: {fileID: 1840128072344326365, guid: 70fbc492841c26847a3729c3fc8c4ebe, type: 3}
     attribute: m_Sprite
-    path: Character_Idle_3
+    path: LowerBodySprite
     classID: 212
     script: {fileID: 0}
     flags: 2
@@ -60,7 +60,7 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 1699521315
+      path: 2606690287
       attribute: 0
       script: {fileID: 0}
       typeID: 212
@@ -69,7 +69,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 4232442521
+      path: 3827034381
       attribute: 0
       script: {fileID: 0}
       typeID: 212
