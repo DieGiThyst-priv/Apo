@@ -7,8 +7,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     public Vector2 moveInput { get; private set; }
 
-
-
+    public GameObject gunBody;
     private Animator animator;
 
     void Start()
@@ -17,7 +16,6 @@ public class PlayerMovement : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    
     void Update()
     {
         rb.linearVelocity = moveInput * moveSpeed;
@@ -37,5 +35,12 @@ public class PlayerMovement : MonoBehaviour
         moveInput = context.ReadValue<Vector2>();
         animator.SetFloat("InputX", moveInput.x);
         animator.SetFloat("InputY", moveInput.y);
+    }
+
+    public void EquipGun(bool equip)
+    {
+        animator.SetBool("gunOut", equip);
+        Gun gun = gunBody.GetComponentInChildren<Gun>();
+        gun.canShoot = equip;
     }
 }

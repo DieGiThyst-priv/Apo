@@ -25,5 +25,16 @@ public class Item : Interactable
     public virtual void UseItem()
     {
         Debug.Log("Using item" + Name);
+        GameObject player = GameObject.FindWithTag("Player");
+        if (this.Name == "Gun")
+        {
+            player.GetComponent<PlayerMovement>().EquipGun(true);
+            Debug.Log("Equipped gun");   
+        }
+        else
+        {
+            player.GetComponent<PlayerMovement>().EquipGun(false);
+            Debug.Log("Unequipped gun");
+        }
     }
 }

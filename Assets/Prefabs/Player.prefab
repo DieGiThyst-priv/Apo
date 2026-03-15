@@ -221,7 +221,6 @@ GameObject:
   - component: {fileID: 7495148130063686353}
   - component: {fileID: 8738714037967376479}
   - component: {fileID: 2420502403437288617}
-  - component: {fileID: 934005543875187840}
   - component: {fileID: 8448364030680628883}
   m_Layer: 0
   m_Name: Player
@@ -421,6 +420,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
+  gunBody: {fileID: 2746491482861571741}
 --- !u!114 &7495148130063686353
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -534,18 +534,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &934005543875187840
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7504323972471661270}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0239365c7c71fcf49ba8c5551985737f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &8448364030680628883
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -632,6 +620,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1943497311273072194}
     - target: {fileID: 7374842655855777818, guid: eed8ed1f4b08e34448dbbeb062708df5, type: 3}
+      propertyPath: canShoot
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7374842655855777818, guid: eed8ed1f4b08e34448dbbeb062708df5, type: 3}
       propertyPath: LeftBarrel
       value: 
       objectReference: {fileID: 3906215896464576810}
@@ -657,6 +649,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 975207429455089867, guid: eed8ed1f4b08e34448dbbeb062708df5, type: 3}
   m_PrefabInstance: {fileID: 577992399715302172}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2746491482861571741 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3321420624307320193, guid: eed8ed1f4b08e34448dbbeb062708df5, type: 3}
+  m_PrefabInstance: {fileID: 577992399715302172}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &3317010132911606916 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2741867686240106392, guid: eed8ed1f4b08e34448dbbeb062708df5, type: 3}
@@ -667,7 +664,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7374842655855777818, guid: eed8ed1f4b08e34448dbbeb062708df5, type: 3}
   m_PrefabInstance: {fileID: 577992399715302172}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 2746491482861571741}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 336238c799b60a647b327cd79fb92bf3, type: 3}

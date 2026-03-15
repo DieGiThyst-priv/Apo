@@ -41,15 +41,6 @@ public class HotbarController : MonoBehaviour
         if(slot.currentItem != null)
         {
             Item item = slot.currentItem.GetComponent<Item>();
-            Animator playerAnimator = GameObject.FindWithTag("Player").GetComponentInChildren<Animator>();
-            if (item.Name == "Gun")
-            {
-                playerAnimator.SetBool("gunOut", true);
-            }
-            else
-            {
-                playerAnimator.SetBool("gunOut", true);
-            }
             item.UseItem();
         }
     }
@@ -73,7 +64,6 @@ public class HotbarController : MonoBehaviour
 
     public void SetHotbarItems(List<InventorySaveData> savedata)
     {
-        //clear inventory panels
         foreach(Transform child in hotbarPanel.transform)
         {
             Destroy(child.gameObject);

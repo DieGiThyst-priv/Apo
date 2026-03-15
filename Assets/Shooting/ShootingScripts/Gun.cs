@@ -23,7 +23,7 @@ public class Gun : MonoBehaviour
     private Animator playerAnimator;
     private Vector2 Direction;
     private bool isReloading;
-    private bool canShoot = true;
+    public bool canShoot = false;
     private float angle;
 
     private void Start()
@@ -39,7 +39,8 @@ public class Gun : MonoBehaviour
         angle = Mathf.Atan2(Direction.y, Direction.x) * Mathf.Rad2Deg;
         mousePos.z = 0f;
 
-        playerAnimator.SetFloat("mouseX", Mathf.Sign(Direction.x));
+        playerAnimator.SetFloat("mouseX", (Direction.x));
+        playerAnimator.SetFloat("mouseY", (Direction.y));
     }
 
     public void Shoot()
@@ -50,6 +51,7 @@ public class Gun : MonoBehaviour
             ReloadGun();
             return;
         }
+        playerAnimator.SetBool("isShooting", true);
         GameObject bullet = bulletPool.GetBullet();
 
 
@@ -85,6 +87,7 @@ public class Gun : MonoBehaviour
         canShoot = false;
         yield return new WaitForSeconds(1f / fireRate);
         canShoot = true;
+        playerAnimator.SetBool("isShooting", false);
     }
 
     public void ReloadGun() {
