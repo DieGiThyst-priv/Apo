@@ -12,7 +12,7 @@ public class InventoryController : MonoBehaviour
     void Start()
     {
         itemDictionary = FindFirstObjectByType<ItemDictionary>();
-        /* for(int i=0; i< slotCount; i++)
+       /*  for(int i=0; i< slotCount; i++)
         {
          Slot slot = Instantiate(slotPrefab, inventoryPanel.transform).GetComponent<Slot>();
             if (i < itemPrefabs.Length)
