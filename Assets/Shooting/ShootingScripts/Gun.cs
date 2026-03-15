@@ -1,4 +1,7 @@
+using System;
 using System.Collections;
+using System.Diagnostics;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -13,21 +16,30 @@ public class Gun : MonoBehaviour
     [SerializeField] private GameObject reloadingObject;
     [SerializeField] private Animator animator;
     [SerializeField] private string reloadAnimationName = "Reload_First_Clip";
+    [SerializeField] private GameObject RightBarrel;
+    [SerializeField] private GameObject LeftBarrel;
+    [SerializeField] private GameObject Player;
+
+    private Animator playerAnimator;
+    private Vector2 Direction;
     private bool isReloading;
     private bool canShoot = true;
+    private float angle;
 
     private void Start()
     {
         remainingShots = magazineSize;
+        playerAnimator = Player.GetComponent<Animator>();
     }
     void Update()
     {
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 direction = mousePos - transform.position;
+        Direction = (mousePos - transform.position);
 
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        angle = Mathf.Atan2(Direction.y, Direction.x) * Mathf.Rad2Deg;
+        mousePos.z = 0f;
 
-        transform.rotation = Quaternion.Euler(0, 0, angle);
+        playerAnimator.SetFloat("mouseX", Mathf.Sign(Direction.x));
     }
 
     public void Shoot()
@@ -38,10 +50,18 @@ public class Gun : MonoBehaviour
             ReloadGun();
             return;
         }
-        Vector2 mousePos = Mouse.current.position.ReadValue();
         GameObject bullet = bulletPool.GetBullet();
-        bullet.transform.position = transform.position;
-        bullet.transform.rotation = transform.rotation;
+
+
+        if (Direction.x > transform.position.x)
+        {
+            bullet.transform.position = RightBarrel.transform.position;
+
+        }
+        if (Direction.x < transform.position.x) { 
+            bullet.transform.position = LeftBarrel.transform.position;
+        }
+        bullet.transform.rotation = Quaternion.Euler(0, 0, angle);
 
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
 
