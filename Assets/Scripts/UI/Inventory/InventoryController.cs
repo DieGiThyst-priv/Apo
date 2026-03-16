@@ -8,7 +8,6 @@ public class InventoryController : MonoBehaviour
     public GameObject slotPrefab;
     public int slotCount;
     public GameObject[] itemPrefabs;
-
     public HotbarController hotbarController;
 
     void Start()

@@ -22,14 +22,16 @@ public class Gun : MonoBehaviour
     private Animator playerAnimator;
     private Vector2 Direction;
     private bool isReloading;
-    public bool canShoot = false;
+    public bool gunEquipped = false;
+    private bool canShoot = true;
     private float angle;
 
-    private void Start()
+    private void Awake()
     {
         remainingShots = magazineSize;
         playerAnimator = Player.GetComponent<Animator>();
     }
+
     void Update()
     {
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -45,24 +47,21 @@ public class Gun : MonoBehaviour
 
     public void Shoot()
     {
-        if (isReloading || !canShoot)
-            return;
+        if (isReloading || !gunEquipped || !canShoot)
+        return;
         if (remainingShots <= 0) {
             ReloadGun();
             return;
         }
-        playerAnimator.SetBool("isShooting", true);
         GameObject bullet = bulletPool.GetBullet();
 
 
         if (Direction.x > 0)
         {
-            Debug.Log("Direction x:" + Direction.x+ " , tranform x: " + transform.position.x + "Supposed to be right barrel");
             bullet.transform.position = RightBarrel.transform.position;
 
         }
         if (Direction.x < 0) { 
-            Debug.Log("Direction x:" + Direction.x+ " , tranform x: " + transform.position.x + "Supposed to be left barrel");
             bullet.transform.position = LeftBarrel.transform.position;
         }
         bullet.transform.rotation = Quaternion.Euler(0, 0, angle);
@@ -77,6 +76,7 @@ public class Gun : MonoBehaviour
         remainingShots--;
         StartCoroutine(DeactivateBullet(bullet));
         StartCoroutine(fireRateDelay());
+
     }
 
     IEnumerator DeactivateBullet(GameObject bullet)
@@ -89,7 +89,6 @@ public class Gun : MonoBehaviour
         canShoot = false;
         yield return new WaitForSeconds(1f / fireRate);
         canShoot = true;
-        playerAnimator.SetBool("isShooting", false);
     }
 
     public void ReloadGun() {

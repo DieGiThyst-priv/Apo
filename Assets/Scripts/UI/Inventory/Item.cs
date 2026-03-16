@@ -28,13 +28,11 @@ public class Item : Interactable
         GameObject player = GameObject.FindWithTag("Player");
         if (this.Name == "Gun")
         {
-            player.GetComponent<PlayerMovement>().EquipGun(true);
-            Debug.Log("Equipped gun");   
+            player.GetComponent<PlayerShooting>().EquipGun(true);
         }
         else
         {
-            player.GetComponent<PlayerMovement>().EquipGun(false);
-            Debug.Log("Unequipped gun");
+            player.GetComponent<PlayerShooting>().EquipGun(false);
         }
     }
 }
