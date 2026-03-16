@@ -9,22 +9,35 @@ public class InventoryController : MonoBehaviour
     public int slotCount;
     public GameObject[] itemPrefabs;
     public HotbarController hotbarController;
+    [SerializeField] GameObject gun;
+    
 
     void Start()
     {
         itemDictionary = FindFirstObjectByType<ItemDictionary>();
         hotbarController = GetComponent<HotbarController>();
-       /*  for(int i=0; i< slotCount; i++)
-        {
-         Slot slot = Instantiate(slotPrefab, inventoryPanel.transform).GetComponent<Slot>();
-            if (i < itemPrefabs.Length)
-            {
-                GameObject item = Instantiate(itemPrefabs[i], slot.transform);
-                item.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
-                slot.currentItem = item;
-            }
-        } */
+        /*  for(int i=0; i< slotCount; i++)
+         {
+          Slot slot = Instantiate(slotPrefab, inventoryPanel.transform).GetComponent<Slot>();
+             if (i < itemPrefabs.Length)
+             {
+                 GameObject item = Instantiate(itemPrefabs[i], slot.transform);
+                 item.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+                 slot.currentItem = item;
+             }
+         } */
     }
+
+    private void Awake()
+    {
+        this.StartWithGunInInventory();
+    }
+
+    void StartWithGunInInventory()
+    {
+        this.TryAddToPanel(hotbarController.hotbarPanel.transform, gun);
+    }
+
 
 
     public List<InventorySaveData> GetInventoryItems()
@@ -57,10 +70,12 @@ public class InventoryController : MonoBehaviour
 
     private bool TryAddToPanel(Transform panel, GameObject itemPrefab)
     {
+        Debug.Log("Entry");
         foreach (Transform slotTransform in panel)
         {
+            Debug.Log(slotTransform);
             Slot slot = slotTransform.GetComponent<Slot>();
-
+            Debug.Log(slot.currentItem);
             if (slot != null && slot.currentItem == null)
             {
                 GameObject newItem = Instantiate(itemPrefab, slot.transform);

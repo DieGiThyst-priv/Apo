@@ -46,7 +46,6 @@ public class HotbarController : MonoBehaviour
         }
     }
 
-
     public List<InventorySaveData> GetHotbarItems()
     {
         List<InventorySaveData> hotbarData = new List<InventorySaveData>();
