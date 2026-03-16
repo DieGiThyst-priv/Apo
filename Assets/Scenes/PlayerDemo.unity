@@ -10947,6 +10947,17 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 0.2260127}
   m_EdgeRadius: 0
+--- !u!114 &1450625564 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6902537657710709902, guid: bdb844fcdfc15d5419abd97470a9c2db, type: 3}
+  m_PrefabInstance: {fileID: 1765134678}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff8100950c34dcc49b7fa0e648e4768f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1490037853
 GameObject:
   m_ObjectHideFlags: 0
@@ -11849,14 +11860,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6902537657710709902, guid: bdb844fcdfc15d5419abd97470a9c2db, type: 3}
+      propertyPath: hotbarPanel
+      value: 
+      objectReference: {fileID: 2023017588}
     - target: {fileID: 7170119985831962629, guid: bdb844fcdfc15d5419abd97470a9c2db, type: 3}
       propertyPath: m_Name
       value: GameController
       objectReference: {fileID: 0}
     - target: {fileID: 8671267610471763304, guid: bdb844fcdfc15d5419abd97470a9c2db, type: 3}
+      propertyPath: gun
+      value: 
+      objectReference: {fileID: 4492850790142888818, guid: 739dab0e8c0cbb242b19597fb13c55b8, type: 3}
+    - target: {fileID: 8671267610471763304, guid: bdb844fcdfc15d5419abd97470a9c2db, type: 3}
       propertyPath: inventoryPanel
       value: 
       objectReference: {fileID: 640877380}
+    - target: {fileID: 8671267610471763304, guid: bdb844fcdfc15d5419abd97470a9c2db, type: 3}
+      propertyPath: hotbarController
+      value: 
+      objectReference: {fileID: 1450625564}
     - target: {fileID: 8671267610471763304, guid: bdb844fcdfc15d5419abd97470a9c2db, type: 3}
       propertyPath: itemPrefabs.Array.size
       value: 0
@@ -11864,10 +11887,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7170119985831962629, guid: bdb844fcdfc15d5419abd97470a9c2db, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1932524088}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bdb844fcdfc15d5419abd97470a9c2db, type: 3}
 --- !u!1 &1784351772
 GameObject:
@@ -12864,26 +12884,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!1 &1932524084 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7170119985831962629, guid: bdb844fcdfc15d5419abd97470a9c2db, type: 3}
-  m_PrefabInstance: {fileID: 1765134678}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1932524088
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1932524084}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff8100950c34dcc49b7fa0e648e4768f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hotbarPanel: {fileID: 2023017588}
-  slotPrefab: {fileID: 715353307345846756, guid: 20cef724169d17844be699bcb2c5fafe, type: 3}
-  slotCount: 2
 --- !u!1 &2023017588 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8111609714311603897, guid: e012a8139764ee148b8b856e59d709b7, type: 3}
