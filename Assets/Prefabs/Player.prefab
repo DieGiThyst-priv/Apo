@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &183956585551232434
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4421542920805643333}
+  m_Layer: 0
+  m_Name: UpBarrel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4421542920805643333
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 183956585551232434}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.045, y: 1.3200002, z: 0}
+  m_LocalScale: {x: 1, y: 1.0000176, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 400205718581013463}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &474548279027803245
 GameObject:
   m_ObjectHideFlags: 0
@@ -87,6 +118,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &2285857170583769464
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 131021234469785915}
+  m_Layer: 0
+  m_Name: DownBarrel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &131021234469785915
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2285857170583769464}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.045, y: -1.1899999, z: 0}
+  m_LocalScale: {x: 1, y: 1.0000176, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 400205718581013463}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3906215896464576810
 GameObject:
   m_ObjectHideFlags: 0
@@ -421,6 +483,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   gunBody: {fileID: 2746491482861571741}
+  cursorTexture: {fileID: 0}
+  hotstop: {x: 0, y: 0}
+  cursorMode: 0
 --- !u!114 &7495148130063686353
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -639,6 +704,12 @@ PrefabInstance:
     - {fileID: 1223803476674838308, guid: eed8ed1f4b08e34448dbbeb062708df5, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 975207429455089867, guid: eed8ed1f4b08e34448dbbeb062708df5, type: 3}
+      insertIndex: 0
+      addedObject: {fileID: 131021234469785915}
+    - targetCorrespondingSourceObject: {fileID: 975207429455089867, guid: eed8ed1f4b08e34448dbbeb062708df5, type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 4421542920805643333}
     - targetCorrespondingSourceObject: {fileID: 975207429455089867, guid: eed8ed1f4b08e34448dbbeb062708df5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7857821369931001523}

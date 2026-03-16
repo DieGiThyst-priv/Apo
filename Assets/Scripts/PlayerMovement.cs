@@ -10,6 +10,12 @@ public class PlayerMovement : MonoBehaviour
     public GameObject gunBody;
     private Animator animator;
 
+    [Header("Crosshair")]
+    public Texture2D cursorTexture;
+    public Vector2 hotstop = Vector2.zero;
+    public CursorMode cursorMode = CursorMode.Auto;
+
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -40,7 +46,18 @@ public class PlayerMovement : MonoBehaviour
     public void EquipGun(bool equip)
     {
         animator.SetBool("gunOut", equip);
+        
         Gun gun = gunBody.GetComponentInChildren<Gun>();
         gun.canShoot = equip;
+        if(equip)
+        {
+            Cursor.SetCursor(cursorTexture, hotstop, cursorMode);
+        }
+        else
+        {
+            animator.SetBool("isShooting", false);
+            Cursor.SetCursor(null, hotstop, cursorMode);
+        }
+        
     }
 }

@@ -816,6 +816,7 @@ GameObject:
   - component: {fileID: 2394010465555257105}
   - component: {fileID: 6449598881596039693}
   - component: {fileID: 127942896525525460}
+  - component: {fileID: 2136248633734847161}
   m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
@@ -922,6 +923,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuCanvas: {fileID: 2811646999013305707}
+--- !u!114 &2136248633734847161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3039090870058979182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffe06ef4c0df0254996fd6bac68f86fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvasGroup: {fileID: 8069464061456893085}
+  fadeDuration: 0.2
 --- !u!1 &3822863002850314562
 GameObject:
   m_ObjectHideFlags: 0

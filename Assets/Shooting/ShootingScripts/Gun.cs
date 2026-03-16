@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Diagnostics;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -38,9 +37,10 @@ public class Gun : MonoBehaviour
 
         angle = Mathf.Atan2(Direction.y, Direction.x) * Mathf.Rad2Deg;
         mousePos.z = 0f;
+        float animatorDirectionX = Mathf.Sign(mousePos.x - transform.position.x);
 
-        playerAnimator.SetFloat("mouseX", (Direction.x));
-        playerAnimator.SetFloat("mouseY", (Direction.y));
+        playerAnimator.SetFloat("mouseX", animatorDirectionX);
+        playerAnimator.SetFloat("mouseY", Direction.y);
     }
 
     public void Shoot()
@@ -55,12 +55,14 @@ public class Gun : MonoBehaviour
         GameObject bullet = bulletPool.GetBullet();
 
 
-        if (Direction.x > transform.position.x)
+        if (Direction.x > 0)
         {
+            Debug.Log("Direction x:" + Direction.x+ " , tranform x: " + transform.position.x + "Supposed to be right barrel");
             bullet.transform.position = RightBarrel.transform.position;
 
         }
-        if (Direction.x < transform.position.x) { 
+        if (Direction.x < 0) { 
+            Debug.Log("Direction x:" + Direction.x+ " , tranform x: " + transform.position.x + "Supposed to be left barrel");
             bullet.transform.position = LeftBarrel.transform.position;
         }
         bullet.transform.rotation = Quaternion.Euler(0, 0, angle);
