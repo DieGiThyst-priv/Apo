@@ -17,6 +17,8 @@ public class Gun : MonoBehaviour
     [SerializeField] private string reloadAnimationName = "Reload_First_Clip";
     [SerializeField] private GameObject RightBarrel;
     [SerializeField] private GameObject LeftBarrel;
+    [SerializeField] private GameObject UpBarrel;
+    [SerializeField] private GameObject DownBarrel;
     [SerializeField] private GameObject Player;
 
     private Animator playerAnimator;
@@ -56,13 +58,25 @@ public class Gun : MonoBehaviour
         GameObject bullet = bulletPool.GetBullet();
 
 
-        if (Direction.x > 0)
+        if (Direction.x > Direction.y && -Direction.x < Direction.y)
         {
             bullet.transform.position = RightBarrel.transform.position;
 
         }
-        if (Direction.x < 0) { 
+        if (Direction.x < Direction.y && -Direction.x > Direction.y)
+        {
             bullet.transform.position = LeftBarrel.transform.position;
+
+        }
+        if (Direction.x > Direction.y && -Direction.x > Direction.y)
+        {
+            bullet.transform.position = DownBarrel.transform.position;
+
+        }
+        if (Direction.x < Direction.y && -Direction.x < Direction.y)
+        {
+            bullet.transform.position = UpBarrel.transform.position;
+
         }
         bullet.transform.rotation = Quaternion.Euler(0, 0, angle);
 
