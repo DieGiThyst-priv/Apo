@@ -30,6 +30,7 @@ public class HotbarController : MonoBehaviour
         {
             if (Keyboard.current[hotbarKeys[i]].wasPressedThisFrame)
             {
+                
                 UseItemInSlot(i);
             }
         }

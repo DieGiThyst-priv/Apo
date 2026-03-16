@@ -11,8 +11,6 @@ public class PlayerMovement : MonoBehaviour
     private Animator animator;
 
 
-
-
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
