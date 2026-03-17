@@ -41,9 +41,11 @@ public class Gun : MonoBehaviour
 
         angle = Mathf.Atan2(Direction.y, Direction.x) * Mathf.Rad2Deg;
         mousePos.z = 0f;
-        float animatorDirectionX = Mathf.Sign(mousePos.x - transform.position.x);
+        float animatorDirectionX = (mousePos.x - transform.position.x);
+        float animatorMagnitudeX = Mathf.Sign(mousePos.x - transform.position.x);
 
         playerAnimator.SetFloat("mouseX", animatorDirectionX);
+        playerAnimator.SetFloat("mouseMagnitudeX", animatorMagnitudeX);
         playerAnimator.SetFloat("mouseY", Direction.y);
     }
 
@@ -57,23 +59,26 @@ public class Gun : MonoBehaviour
         }
         GameObject bullet = bulletPool.GetBullet();
 
+        float scalar = 1f;
+        float scaledDirectionX = Direction.x * scalar;
 
-        if (Direction.x > Direction.y && -Direction.x < Direction.y)
+
+        if (scaledDirectionX > Direction.y && -scaledDirectionX < Direction.y)
         {
             bullet.transform.position = RightBarrel.transform.position;
 
         }
-        if (Direction.x < Direction.y && -Direction.x > Direction.y)
+        if (scaledDirectionX < Direction.y && -scaledDirectionX > Direction.y)
         {
             bullet.transform.position = LeftBarrel.transform.position;
 
         }
-        if (Direction.x > Direction.y && -Direction.x > Direction.y)
+        if (scaledDirectionX > Direction.y && -scaledDirectionX > Direction.y)
         {
             bullet.transform.position = DownBarrel.transform.position;
 
         }
-        if (Direction.x < Direction.y && -Direction.x < Direction.y)
+        if (scaledDirectionX < Direction.y && -scaledDirectionX < Direction.y)
         {
             bullet.transform.position = UpBarrel.transform.position;
 
