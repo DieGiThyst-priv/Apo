@@ -10347,6 +10347,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &752471697 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7504323972471661270, guid: 4f5b0e1aca872934299fc83816846535, type: 3}
+  m_PrefabInstance: {fileID: 6628734794888963035}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &892623116
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11719,6 +11724,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 127942896525525460, guid: e012a8139764ee148b8b856e59d709b7, type: 3}
+      propertyPath: playerMovement
+      value: 
+      objectReference: {fileID: 752471697}
     - target: {fileID: 3008162781757035037, guid: e012a8139764ee148b8b856e59d709b7, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -13021,7 +13030,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8448364030680628883, guid: 4f5b0e1aca872934299fc83816846535, type: 3}
   m_PrefabInstance: {fileID: 6628734794888963035}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 752471697}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2deb4dc498c486e4cb8b069b6f5ccbfd, type: 3}
@@ -13087,6 +13096,10 @@ PrefabInstance:
       propertyPath: cursorTexture
       value: 
       objectReference: {fileID: 2800000, guid: d39793094e3dca44d886015ca32edc16, type: 3}
+    - target: {fileID: 7495148130063686353, guid: 4f5b0e1aca872934299fc83816846535, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7504323972471661270, guid: 4f5b0e1aca872934299fc83816846535, type: 3}
       propertyPath: m_Name
       value: Player

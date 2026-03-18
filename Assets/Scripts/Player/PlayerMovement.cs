@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
 
     public GameObject gunBody;
     private Animator animator;
-
+    private bool frozen = false;
 
     void Start()
     {
@@ -24,19 +24,33 @@ public class PlayerMovement : MonoBehaviour
 
     public void Move(InputAction.CallbackContext context)
     {
-        animator.SetBool("isWalking", true);
-
-        if (context.canceled)
+        if (!frozen)
         {
-            animator.SetBool("isWalking", false);
-            animator.SetFloat("LastInputX", moveInput.x);
-            animator.SetFloat("LastInputY", moveInput.y);
-        }
+            animator.SetBool("isWalking", true);
 
-        moveInput = context.ReadValue<Vector2>();
-        animator.SetFloat("InputX", moveInput.x);
-        animator.SetFloat("InputY", moveInput.y);
+            if (context.canceled)
+            {
+                animator.SetBool("isWalking", false);
+                animator.SetFloat("LastInputX", moveInput.x);
+                animator.SetFloat("LastInputY", moveInput.y);
+            }
+
+            moveInput = context.ReadValue<Vector2>();
+            animator.SetFloat("InputX", moveInput.x);
+            animator.SetFloat("InputY", moveInput.y);
+        }
     }
 
-    
+    public void freeze() {
+        frozen = true;
+    }
+
+    public void unfreeze()
+    {
+        frozen = true;
+    }
+
+    public bool isFrozen() {
+        return frozen;
+    }
 }
