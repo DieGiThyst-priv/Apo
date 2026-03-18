@@ -49,6 +49,29 @@ public class Gun : MonoBehaviour
         playerAnimator.SetFloat("mouseY", Direction.y);
     }
 
+    public Transform GetActiveBarrel()
+    {
+        var clipInfo = playerAnimator.GetCurrentAnimatorClipInfo(0);
+        
+        string dominantClipName = "";
+        float maxWeight = -1f;
+
+        foreach (var info in clipInfo)
+        {
+            if (info.weight > maxWeight)
+            {
+                maxWeight = info.weight;
+                dominantClipName = info.clip.name;
+            }
+        }
+        if (dominantClipName.Contains("Up"))    return UpBarrel.transform;
+        if (dominantClipName.Contains("Down"))  return DownBarrel.transform;
+        if (dominantClipName.Contains("Left"))  return LeftBarrel.transform;
+        if (dominantClipName.Contains("Right")) return RightBarrel.transform;
+
+        return DownBarrel.transform; 
+    }
+
     public void Shoot()
     {
         if (isReloading || !gunEquipped || !canShoot)
@@ -62,27 +85,10 @@ public class Gun : MonoBehaviour
         float scalar = 1f;
         float scaledDirectionX = Direction.x * scalar;
 
+        Transform firePoint = GetActiveBarrel();
+        
+        bullet.transform.position = firePoint.position;
 
-        if (scaledDirectionX > Direction.y && -scaledDirectionX < Direction.y)
-        {
-            bullet.transform.position = RightBarrel.transform.position;
-
-        }
-        if (scaledDirectionX < Direction.y && -scaledDirectionX > Direction.y)
-        {
-            bullet.transform.position = LeftBarrel.transform.position;
-
-        }
-        if (scaledDirectionX > Direction.y && -scaledDirectionX > Direction.y)
-        {
-            bullet.transform.position = DownBarrel.transform.position;
-
-        }
-        if (scaledDirectionX < Direction.y && -scaledDirectionX < Direction.y)
-        {
-            bullet.transform.position = UpBarrel.transform.position;
-
-        }
         bullet.transform.rotation = Quaternion.Euler(0, 0, angle);
 
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
