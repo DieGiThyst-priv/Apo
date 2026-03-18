@@ -73,6 +73,8 @@ public class HotbarController : MonoBehaviour
         for(int i=0; i<slotCount; i++)
         {
             Instantiate(slotPrefab, hotbarPanel.transform);
+            FindFirstObjectByType<InventoryController>()
+            .SubscribeToPanel(hotbarPanel.transform);
         }
 
         foreach(InventorySaveData data in savedata)

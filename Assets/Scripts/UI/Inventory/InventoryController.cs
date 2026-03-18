@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 
 public class InventoryController : MonoBehaviour
 {
@@ -7,23 +8,26 @@ public class InventoryController : MonoBehaviour
     public GameObject inventoryPanel;
     public GameObject slotPrefab;
     public int slotCount;
-    public GameObject[] itemPrefabs;
+    public List<GameObject> itemPrefabs = new List<GameObject>();
     public HotbarController hotbarController;
 
     void Start()
     {
         itemDictionary = FindFirstObjectByType<ItemDictionary>();
         hotbarController = GetComponent<HotbarController>();
-       /*  for(int i=0; i< slotCount; i++)
-        {
-         Slot slot = Instantiate(slotPrefab, inventoryPanel.transform).GetComponent<Slot>();
-            if (i < itemPrefabs.Length)
-            {
-                GameObject item = Instantiate(itemPrefabs[i], slot.transform);
-                item.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
-                slot.currentItem = item;
-            }
-        } */
+        /*  for(int i=0; i< slotCount; i++)
+         {
+          Slot slot = Instantiate(slotPrefab, inventoryPanel.transform).GetComponent<Slot>();
+             if (i < itemPrefabs.Length)
+             {
+                 GameObject item = Instantiate(itemPrefabs[i], slot.transform);
+                 item.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+                 slot.currentItem = item;
+             }
+         } */
+
+        SubscribeToPanel(inventoryPanel.transform);
+        SubscribeToPanel(hotbarController.hotbarPanel.transform);
     }
 
 
@@ -82,16 +86,21 @@ public class InventoryController : MonoBehaviour
             Destroy(child.gameObject);
         }
 
-        for(int i=0; i<slotCount; i++)
+        for (int i = 0; i < slotCount; i++)
         {
-            Instantiate(slotPrefab, inventoryPanel.transform);
+            GameObject slotObj = Instantiate(slotPrefab, inventoryPanel.transform);
+            Slot slot = slotObj.GetComponent<Slot>();
+
+            slot.OnItemChanged += HandleItemChanged;
         }
 
-        foreach(InventorySaveData data in savedata)
+        foreach (InventorySaveData data in savedata)
         {
             if(data.slotIndex < slotCount)
             {
                 Slot slot = inventoryPanel.transform.GetChild(data.slotIndex).GetComponent<Slot>();
+                slot.OnItemChanged += HandleItemChanged;
+
                 GameObject itemPrefab = itemDictionary.getItemPrefab(data.ItemID);
                 if (itemPrefab != null)
                 {
@@ -99,6 +108,54 @@ public class InventoryController : MonoBehaviour
                     item.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
                     slot.currentItem = item;
                 }
+            }
+        }
+    }
+
+    void HandleItemChanged(Slot slot, GameObject oldItem, GameObject newItem)
+    {
+        if (oldItem != null)
+        {
+            if (!IsItemInAnySlot(oldItem))
+            {
+                itemPrefabs.Remove(oldItem);
+            }
+        }
+        if (newItem != null)
+        {
+            if (!itemPrefabs.Contains(newItem))
+            {
+                itemPrefabs.Add(newItem);
+            }
+        }
+    }
+
+    bool IsItemInAnySlot(GameObject item)
+    {
+        foreach (Transform slotTransform in inventoryPanel.transform)
+        {
+            Slot s = slotTransform.GetComponent<Slot>();
+            if (s != null && s.currentItem == item)
+                return true;
+        }
+        foreach (Transform slotTransform in hotbarController.hotbarPanel.transform)
+        {
+            Slot s = slotTransform.GetComponent<Slot>();
+            if (s != null && s.currentItem == item)
+                return true;
+        }
+
+        return false;
+    }
+
+    public void SubscribeToPanel(Transform panel)
+    {
+        foreach (Transform slotTransform in panel)
+        {
+            Slot slot = slotTransform.GetComponent<Slot>();
+            if (slot != null)
+            {
+                slot.OnItemChanged += HandleItemChanged;
             }
         }
     }
