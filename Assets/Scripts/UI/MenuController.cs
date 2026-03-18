@@ -16,13 +16,7 @@ public class MenuController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            if (playerMovementScript.isFrozen()) {
-                playerMovementScript.unfreeze();
-            }
-            else
-            {
-                playerMovementScript.freeze();
-            }
+            playerMovementScript.setFrozen(!playerMovementScript.isFrozen());
             menuCanvas.SetActive(!menuCanvas.activeSelf);
         }   
     }

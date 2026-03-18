@@ -53,4 +53,9 @@ public class PlayerMovement : MonoBehaviour
     public bool isFrozen() {
         return frozen;
     }
+
+    public void setFrozen(bool value)
+    {
+        frozen = value;
+    }   
 }
