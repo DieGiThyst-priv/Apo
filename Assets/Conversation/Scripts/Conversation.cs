@@ -6,8 +6,7 @@ public class Conversation : ScriptableObject
     private ConversationNode currentNode;
     private ConversationNode[] nodes;
 
-
-    public Conversation(ConversationNode[] nodes)
+    public void Init(ConversationNode[] nodes)
     {
         this.nodes = nodes;
         currentNode = nodes[0];
@@ -20,11 +19,6 @@ public class Conversation : ScriptableObject
 
     public void ProgressToNextNode(int optionIndex)
     {
-        if (optionIndex < 0 || optionIndex >= currentNode.ResponseOptions.Length)
-        {
-            currentNode = currentNode.nextNode(0);
-        }
-
-        currentNode = currentNode.nextNode(optionIndex);
+        currentNode = currentNode.NextNode(optionIndex);
     }
 }

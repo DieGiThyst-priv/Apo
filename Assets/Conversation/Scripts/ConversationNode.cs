@@ -3,31 +3,34 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "ConversationNode", menuName = "Scriptable Objects/ConversationNode")]
 public class ConversationNode : ScriptableObject
 {
-    public string Text { get; set; }
-    public GameObject Speaker { get; set; }
-    public ConversationNode[] NextNodes { get; set; }
-    public ConversationNode[] ResponseOptions { get; set; }
+    public string Text;
+    public GameObject Speaker;
+    public ConversationNode[] NextNodes;
+    public ConversationNode[] ResponseOptions;
 
-    public ConversationNode(string text, GameObject speaker, ConversationNode[] nextNodes, ConversationNode[] responseOptions)
+    public void Init(string text, GameObject speaker)
     {
         Text = text;
         Speaker = speaker;
-        NextNodes = nextNodes;
-        ResponseOptions = responseOptions;
+        NextNodes = new ConversationNode[0];
+        ResponseOptions = new ConversationNode[0];
     }
 
-    public ConversationNode nextNode(int optionIndex) {
-        if (ResponseOptions.Length == 0) {
-            return NextNodes[0];
-        }
-        else if (optionIndex < 0 || optionIndex >= ResponseOptions.Length){
-            Debug.LogError("Invalid option index");
-            return null;
-        }
-        else if (NextNodes.Length == 0) {
-            return null;
+    public ConversationNode NextNode(int optionIndex)
+    {
+        if (ResponseOptions != null && ResponseOptions.Length > 0)
+        {
+            if (optionIndex < 0 || optionIndex >= ResponseOptions.Length)
+            {
+                Debug.LogError("Invalid option index");
+                return null;
+            }
+            return ResponseOptions[optionIndex];
         }
 
-        return ResponseOptions[optionIndex];
+        if (NextNodes != null && NextNodes.Length > 0)
+            return NextNodes[0];
+
+        return null;
     }
 }

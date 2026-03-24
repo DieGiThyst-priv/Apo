@@ -16,7 +16,6 @@ public class ConversationManager : MonoBehaviour
         isConversationActive = false;
     }
 
-    // Update is called once per frame
     void Update()
     {
         

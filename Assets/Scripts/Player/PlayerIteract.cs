@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerInteract : MonoBehaviour
 {
@@ -23,14 +24,17 @@ public class PlayerInteract : MonoBehaviour
             currentInteractable = null;
         }
     }
-
-    public void OnInteract()
+    public void OnInteract(InputAction.CallbackContext context)
     {
-        Debug.Log("PlayerInteract: OnInteract called");
+        if (context.started) 
+        {
+            TryInteract();
+        }
+    }
+    public void TryInteract()
+    {
         if (currentInteractable != null)
         {
-            Debug.Log("PlayerInteract: OnInteract called not null");
-
             currentInteractable.Interact(gameObject);
         }
     }

@@ -23,7 +23,7 @@ public class ConversationMaker : MonoBehaviour
             Debug.LogError("TextAsset not found!");
         }
         CH = presentCompanions[0];
-        CH.GetComponent<Conversable>().SetConversation(MakeConversationNodes(conversationFile));
+        CH.GetComponent<Conversable>().SetConversation(MakeConversation(conversationFile));
         if (CH.GetComponent<Conversable>().GetConversation() == null)
         {
             Debug.LogError("Companion no convers");
@@ -36,118 +36,88 @@ public class ConversationMaker : MonoBehaviour
 
     }
 
-    public Conversation MakeConversationNodes(string text)
+    public Conversation MakeConversation(string text)
     {
-        // Split by $ but keep everything, including main branch
-        string[] parts = text.Split(new[] { "$" }, System.StringSplitOptions.None);
+        List<ConversationNode> allNodes = new List<ConversationNode>();
 
-        Dictionary<string, ConversationNode> branchNodes = new Dictionary<string, ConversationNode>();
-        int branchCounter = 0;
+        // Split into branches
+        string[] branches = text.Split('$');
 
-        foreach (string rawBranch in parts)
+        Dictionary<string, ConversationNode> branchStarts = new Dictionary<string, ConversationNode>();
+
+        for (int b = 0; b < branches.Length; b++)
         {
-            string branch = rawBranch.Trim();
+            string branch = branches[b].Trim();
             if (string.IsNullOrEmpty(branch)) continue;
 
-            string branchId = null;
-            string branchContent = branch;
+            string branchId = (b == 0) ? "main" : branch.Substring(0, 1);
+            string branchContent = (b == 0) ? branch : branch.Substring(1);
 
-            // If branch starts with a number (like 1MC:...), extract numeric branchId
-            int firstChar = branch[0];
-            if (char.IsDigit((char)firstChar))
-            {
-                int colonIndex = branch.IndexOfAny(new char[] { 'M', 'C' }); // find where speaker prefix starts
-                if (colonIndex > 0)
-                {
-                    branchId = branch.Substring(0, colonIndex).Trim();
-                    branchContent = branch.Substring(colonIndex).Trim();
-                }
-            }
-            else if (branchCounter == 0)
-            {
-                branchId = "main"; // first part without $ → main branch
-            }
-
-            // Split lines by >
             string[] lines = branchContent.Split('>');
 
-            ConversationNode previousNode = null;
-            ConversationNode firstNode = null;
+            ConversationNode prev = null;
+            ConversationNode first = null;
 
-            foreach (string lineRaw in lines)
+            foreach (string rawLine in lines)
             {
-                string line = lineRaw.Trim();
+                string line = rawLine.Trim();
                 if (string.IsNullOrEmpty(line)) continue;
 
-                // Parse speaker
-                string speakerPrefix = null;
-                string content = null;
-                int colonIndex = line.IndexOf(':');
-                if (colonIndex > 0)
+                // Parse speaker + text
+                string speakerKey = "MC";
+                string content = line;
+
+                int colon = line.IndexOf(':');
+                if (colon > 0)
                 {
-                    speakerPrefix = line.Substring(0, colonIndex).Trim();
-                    content = line.Substring(colonIndex + 1).Trim();
-                }
-                else
-                {
-                    speakerPrefix = "MC"; // default
-                    content = line;
+                    speakerKey = line.Substring(0, colon).Trim();
+                    content = line.Substring(colon + 1).Trim();
                 }
 
-                // Map prefix to GameObject
-                GameObject speakerGO = speakerPrefix == "MC" ? MC : CH;
+                GameObject speaker = speakerKey == "MC" ? MC : CH;
 
                 // Create node
                 ConversationNode node = ScriptableObject.CreateInstance<ConversationNode>();
-                node.Text = content;
-                node.Speaker = speakerGO;
-                node.NextNodes = new ConversationNode[0];
-                node.ResponseOptions = new ConversationNode[0];
+                node.Init(content, speaker);
 
-                if (firstNode == null) firstNode = node;
-                if (previousNode != null)
-                {
-                    previousNode.NextNodes = new ConversationNode[] { node };
-                }
+                allNodes.Add(node);
 
-                previousNode = node;
+                if (first == null) first = node;
+
+                if (prev != null)
+                    prev.NextNodes = new[] { node };
+
+                prev = node;
             }
 
-            if (!string.IsNullOrEmpty(branchId) && firstNode != null)
+            if (first != null)
+                branchStarts[branchId] = first;
+        }
+
+        // 🔥 Link branches to main (VERY simple for now)
+        if (branchStarts.ContainsKey("main"))
+        {
+            ConversationNode lastMain = branchStarts["main"];
+
+            // walk to last node
+            while (lastMain.NextNodes.Length > 0)
+                lastMain = lastMain.NextNodes[0];
+
+            // attach branches as response options
+            List<ConversationNode> options = new List<ConversationNode>();
+
+            foreach (var kvp in branchStarts)
             {
-                branchNodes[branchId] = firstNode;
+                if (kvp.Key == "main") continue;
+                options.Add(kvp.Value);
             }
 
-            branchCounter++;
+            lastMain.ResponseOptions = options.ToArray();
         }
 
-        // Use main branch as starting node
-        ConversationNode mainNode = branchNodes.ContainsKey("main") ? branchNodes["main"] : null;
-
-        if (mainNode == null)
-        {
-            Debug.LogError("No main conversation found!");
-            return null;
-        }
-
-        // Collect all nodes in a flat list for the Conversation constructor
-        List<ConversationNode> allNodes = new List<ConversationNode>(branchNodes.Values);
-
-        // Create the Conversation ScriptableObject
+        // Create conversation
         Conversation conversation = ScriptableObject.CreateInstance<Conversation>();
-        // Use reflection to set private nodes field since it's private, or you can make a constructor that accepts nodes
-        var nodesField = typeof(Conversation).GetField("nodes", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-        if (nodesField != null)
-        {
-            nodesField.SetValue(conversation, allNodes.ToArray());
-        }
-
-        // Set starting node
-        var currentNodeField = typeof(Conversation).GetField("currentNode", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-        if (currentNodeField != null)
-        {
-            currentNodeField.SetValue(conversation, mainNode);
-        }
+        conversation.Init(allNodes.ToArray());
 
         return conversation;
     }
