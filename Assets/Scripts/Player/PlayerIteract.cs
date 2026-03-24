@@ -26,8 +26,11 @@ public class PlayerInteract : MonoBehaviour
 
     public void OnInteract()
     {
+        Debug.Log("PlayerInteract: OnInteract called");
         if (currentInteractable != null)
         {
+            Debug.Log("PlayerInteract: OnInteract called not null");
+
             currentInteractable.Interact(gameObject);
         }
     }
