@@ -8,10 +8,12 @@ public class ConversationManager : MonoBehaviour
     [SerializeField] GameObject nameTextGameObject;
     [SerializeField] GameObject speakerSpriteGameObject;
     private Conversable currentConversable;
+    private bool isConversationActive;
 
     void Start()
     {
         conversationCanvas.SetActive(false);
+        isConversationActive = false;
     }
 
     // Update is called once per frame
@@ -20,24 +22,40 @@ public class ConversationManager : MonoBehaviour
         
     }
 
-    public void ProgressConversation(Conversation conversation, int optionIndex)
+    public void ProgressConversation(Conversable conversable, int optionIndex)
     {
-        this.StartConversation(currentConversable);
+        if (!isConversationActive)
+        {
+            StartConversation(conversable);
+            return;
+        }
+        Conversation conversation = conversable.GetConversation();
+        if (conversation.GetCurrentNode().NextNodes.Length == 0)
+        {
+            EndConversation();
+            return;
+        }
         conversation.ProgressToNextNode(optionIndex);
         UpdateConversationUI(conversation);
-        EndConversation();
     }
 
     public void EndConversation()
     {
         conversationCanvas.SetActive(false);
+        isConversationActive = false;
     }
 
     public void StartConversation(Conversable conversable)
     {
+        isConversationActive = true;
         conversationCanvas.SetActive(true);
-        this.currentConversable = conversable;
-        //UpdateConversationUI(currentConversable.GetConversation());
+        currentConversable = conversable;
+        if (currentConversable == null)
+        {
+            Debug.LogError("ConversationManager: StartConversation called with null conversable");
+            return;
+        }
+        UpdateConversationUI(currentConversable.GetConversation());
     }
 
     public void UpdateConversationUI(Conversation conversation)

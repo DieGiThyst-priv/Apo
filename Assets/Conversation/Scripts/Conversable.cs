@@ -16,7 +16,7 @@ public class Conversable : Interactable
 
     public override void Interact(GameObject interactor)
     {
-        conversationManager.GetComponent<ConversationManager>().ProgressConversation(this.conversation,0);
+        conversationManager.GetComponent<ConversationManager>().ProgressConversation(this,0);
     }
 
     public void SetConversation(Conversation conversation)

@@ -24,6 +24,11 @@ public class ConversationMaker : MonoBehaviour
         }
         CH = presentCompanions[0];
         CH.GetComponent<Conversable>().SetConversation(MakeConversationNodes(conversationFile));
+        if (CH.GetComponent<Conversable>().GetConversation() == null)
+        {
+            Debug.LogError("Companion no convers");
+            return;
+        }
     }
 
     void Update()
