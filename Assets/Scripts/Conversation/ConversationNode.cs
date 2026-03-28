@@ -22,7 +22,6 @@ public class ConversationNode : ScriptableObject
         {
             if (optionIndex < 0 || optionIndex >= ResponseOptions.Length)
             {
-                Debug.LogError("Invalid option index");
                 return null;
             }
             return ResponseOptions[optionIndex];

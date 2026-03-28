@@ -1,6 +1,16 @@
-MC: wow this is a conversation>CH: it sure is man>MC:callu callay wonderful day>CH: wouldn't you like to choose what to say >MC: yeah rip or something >CH:yeah and I cant choose what I say either 
-
-$1MC:Im sure you can change based on what I say>CH:yeah, I guess man>MC:Well the worlds ended, so it doesn't matter now>CH:did it really matter at all?
-
-$2MC: I wonder how these branches work>CH:Are you sure?>MC:What point is being sure again anymore
-
+MC: wow this is a conversation>CH: it sure is man>MC:callu callay wonderful day>CH: wouldn't you like to choose what to say >MC: yeah rip or something >CH:yeah and I cant choose what I say either>MC:choice
+£1
+	$1MC:Im sure you can change based on what I say>CH:yeah, I guess man>MC:Well the worlds ended, so it doesn't matter now>CH:did it really matter at all?>MC: choice
+		£2
+		$1MC: choices within choices>CH:What are you on about >MC:choice
+			£3
+			$1MC: im explaining how the game works>CH: yeah with too much yap
+			$2MC: idc what you think bruh>CH: you should buddy
+			$3MC: hmm but has fate taken you on this path>CH: take your meds
+			£3
+		MC:well all comes back to this doesnt it
+		$2MC: the truth sets you free>CH:Yeah you are so right dude
+		£2
+	$2MC: I wonder how these branches work>CH:Are you sure?>MC:What point is being sure again anymore
+	£1
+CH: Well Anyway, whats next>CH:We cant just stand here forever>MC:You have a point i guess, but what can we do>CH:You can decide

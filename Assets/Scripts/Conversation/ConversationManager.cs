@@ -1,4 +1,5 @@
 using TMPro;
+using UnityEditor.IMGUI.Controls;
 using UnityEngine;
 
 public class ConversationManager : MonoBehaviour
@@ -7,6 +8,7 @@ public class ConversationManager : MonoBehaviour
     [SerializeField] GameObject conversationTextGameObject;
     [SerializeField] GameObject nameTextGameObject;
     [SerializeField] GameObject speakerSpriteGameObject;
+    [SerializeField] GameObject Options;
     private Conversable currentConversable;
     private bool isConversationActive;
 
@@ -28,14 +30,34 @@ public class ConversationManager : MonoBehaviour
             StartConversation(conversable);
             return;
         }
+
         Conversation conversation = conversable.GetConversation();
-        if (conversation.GetCurrentNode().NextNodes.Length == 0)
+        ConversationNode currentNode = conversation.GetCurrentNode();
+
+        if (currentNode.ResponseOptions != null && currentNode.ResponseOptions.Length > 0)
+        {
+            conversation.ProgressToNextNode(optionIndex);
+            conversation.ProgressToNextNode(0);
+            UpdateConversationUI(conversation);
+            return;
+        }
+
+        if (currentNode.NextNodes.Length == 0)
         {
             EndConversation();
             return;
         }
-        conversation.ProgressToNextNode(optionIndex);
+
+        conversation.ProgressToNextNode(0);
         UpdateConversationUI(conversation);
+    }
+
+    public void SelectOption(ConversationNode selectedNode)
+    {
+        this.ProgressConversation(
+            currentConversable,
+            currentConversable.GetConversation().getIndexOfMatchingResponseNode(selectedNode)
+        );
     }
 
     public void EndConversation()
@@ -51,7 +73,6 @@ public class ConversationManager : MonoBehaviour
         currentConversable = conversable;
         if (currentConversable == null)
         {
-            Debug.LogError("ConversationManager: StartConversation called with null conversable");
             return;
         }
         UpdateConversationUI(currentConversable.GetConversation());
@@ -60,11 +81,32 @@ public class ConversationManager : MonoBehaviour
     public void UpdateConversationUI(Conversation conversation)
     {
         ConversationNode currentNode = conversation.GetCurrentNode();
+
         TextMeshProUGUI conversationText = conversationTextGameObject.GetComponent<TextMeshProUGUI>();
         TextMeshProUGUI nameText = nameTextGameObject.GetComponent<TextMeshProUGUI>();
         SpriteRenderer speakerSprite = speakerSpriteGameObject.GetComponent<SpriteRenderer>();
-        conversationText.text = currentNode.Text;
-        nameText.text = currentNode.Speaker.name;
-        speakerSprite.sprite = currentNode.Speaker.GetComponent<SpriteRenderer>().sprite;
+        if (currentNode.ResponseOptions != null && currentNode.ResponseOptions.Length > 0)
+        {
+            OptionsMaker options = Options.GetComponent<OptionsMaker>();
+            options.ShowOptions();
+            populateOptions(currentNode.ResponseOptions);
+
+            conversationText.text = ""; 
+            nameText.text = currentNode.ResponseOptions[0].Speaker.name;
+            speakerSprite.sprite = currentNode.ResponseOptions[0].Speaker.GetComponent<SpriteRenderer>().sprite;
+        }
+        else
+        {
+            Options.GetComponent<OptionsMaker>().HideOptions();
+
+            conversationText.text = currentNode.Text;
+            nameText.text = currentNode.Speaker.name;
+            speakerSprite.sprite = currentNode.Speaker.GetComponent<SpriteRenderer>().sprite;
+        }
+    }
+
+    public void populateOptions(ConversationNode[] nodes) {
+
+        Options.GetComponent<OptionsMaker>().populateOptions(nodes);
     }
 }
