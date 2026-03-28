@@ -42,20 +42,24 @@ public class PlayerMovement : MonoBehaviour
     }
 
     public void freeze() {
-        frozen = true;
+        setFrozen(true);
     }
 
     public void unfreeze()
     {
-        frozen = true;
+        setFrozen(false);
     }
 
     public bool isFrozen() {
-        return frozen;
+        return getFrozen();
     }
 
     public void setFrozen(bool value)
     {
         frozen = value;
-    }   
+    }
+
+    public bool getFrozen() {
+        return frozen ? true : false;
+    }
 }

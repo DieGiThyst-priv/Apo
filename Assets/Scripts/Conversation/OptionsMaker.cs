@@ -8,6 +8,7 @@ public class OptionsMaker : MonoBehaviour
     [SerializeField] private GameObject Scrollbar;
     [SerializeField] private GameObject OptionsElements;
     [SerializeField] private GameObject ConversationManager;
+    [SerializeField] private GameObject ClickerButton;
     private ConversationNode[] currentOptions;
 
     private void Start()
@@ -17,10 +18,12 @@ public class OptionsMaker : MonoBehaviour
 
     public void ShowOptions() {
         this.OptionsElements.SetActive(true);
+        this.ClickerButton.SetActive(false);
     }
 
     public void HideOptions() {
         this.OptionsElements.SetActive(false);
+        this.ClickerButton.SetActive(true);
     }
 
     public void SelectOption(ConversationNode selectedNode) {

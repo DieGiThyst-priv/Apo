@@ -3,6 +3,7 @@ using UnityEngine;
 public class Conversable : Interactable
 {
     [SerializeField] GameObject conversationManager;
+    private ConversationManager managerScript;
     private Conversation conversation;
     void Start()
     {
@@ -16,7 +17,19 @@ public class Conversable : Interactable
 
     public override void Interact(GameObject interactor)
     {
-        conversationManager.GetComponent<ConversationManager>().ProgressConversation(this,0);
+        if (managerScript == null) {
+            managerScript = conversationManager.GetComponent<ConversationManager>();
+        }
+        if (!managerScript.isConversationActiveCheck()) {
+            managerScript.ProgressConversation(this, 0);
+        }
+    }
+
+    public void clickToProgress() {
+        if (managerScript.isConversationActiveCheck())
+        {
+            managerScript.ProgressConversation(this, 0);
+        }
     }
 
     public void SetConversation(Conversation conversation)

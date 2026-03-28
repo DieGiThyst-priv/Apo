@@ -9,6 +9,7 @@ public class ConversationManager : MonoBehaviour
     [SerializeField] GameObject nameTextGameObject;
     [SerializeField] GameObject speakerSpriteGameObject;
     [SerializeField] GameObject Options;
+    [SerializeField] GameObject Player;
     private Conversable currentConversable;
     private bool isConversationActive;
 
@@ -64,10 +65,12 @@ public class ConversationManager : MonoBehaviour
     {
         conversationCanvas.SetActive(false);
         isConversationActive = false;
+        Player.GetComponent<PlayerMovement>().setFrozen(false);
     }
 
     public void StartConversation(Conversable conversable)
     {
+        Player.GetComponent<PlayerMovement>().setFrozen(true);
         isConversationActive = true;
         conversationCanvas.SetActive(true);
         currentConversable = conversable;
@@ -108,5 +111,9 @@ public class ConversationManager : MonoBehaviour
     public void populateOptions(ConversationNode[] nodes) {
 
         Options.GetComponent<OptionsMaker>().populateOptions(nodes);
+    }
+
+    public bool isConversationActiveCheck() {
+        return this.isConversationActive;
     }
 }
