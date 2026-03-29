@@ -191,6 +191,7 @@ GameObject:
   - component: {fileID: 8738714037967376479}
   - component: {fileID: 2420502403437288617}
   - component: {fileID: 8448364030680628883}
+  - component: {fileID: 3979653699688417375}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -332,7 +333,7 @@ MonoBehaviour:
       - m_Target: {fileID: 7495148130063686353}
         m_TargetAssemblyTypeName: PlayerInteract, Assembly-CSharp
         m_MethodName: OnInteract
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -547,6 +548,22 @@ MonoBehaviour:
   cursorTexture: {fileID: 0}
   hotstop: {x: 0, y: 0}
   cursorMode: 0
+--- !u!114 &3979653699688417375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7504323972471661270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6aed1ac516f2dfe4d82af164b441816d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPlayer: 1
+  isCompanion: 0
+  isZombie: 0
+  gameOverOverlay: {fileID: 0}
 --- !u!1001 &1222398806868717324
 PrefabInstance:
   m_ObjectHideFlags: 0

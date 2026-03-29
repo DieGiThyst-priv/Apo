@@ -81,6 +81,7 @@ public class Gun : MonoBehaviour
             return;
         }
         GameObject bullet = bulletPool.GetBullet();
+        bullet.GetComponent<Bullet>().setShooter(this.Player);
 
         float scalar = 1f;
         float scaledDirectionX = Direction.x * scalar;
