@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class CompanionInteract : Interactable
 {
-    public override void Interact(GameObject interactor)
+    public override void Interact()
     {
-        Debug.Log("Hi!" + this.name);
+        RaiseInteraction();
     }
 }

@@ -77,7 +77,7 @@ public class CharacterStats : Interactable
     
     }
 
-    public override void Interact(GameObject interactor)
+    public override void Interact()
     {
         if (isDowned) {
             //start timer with visual feedback for revival

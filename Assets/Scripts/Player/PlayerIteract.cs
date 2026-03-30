@@ -35,7 +35,7 @@ public class PlayerInteract : MonoBehaviour
     {
         if (currentInteractable != null)
         {
-            currentInteractable.Interact(gameObject);
+            currentInteractable.Interact();
         }
     }
 }

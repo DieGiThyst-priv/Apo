@@ -16,7 +16,7 @@ public class Conversable : Interactable
         
     }
 
-    public override void Interact(GameObject interactor)
+    public override void Interact()
     {
         if (characterStats != null)
         {
@@ -26,7 +26,7 @@ public class Conversable : Interactable
         Debug.Log("Interacted with consumed by conversable" + this.gameObject.name);
         if (this.gameObject.GetComponent<CharacterStats>().isCharacterDowned())
         {
-            characterStats.Interact(interactor);
+            characterStats.Interact();
         }
         else
         {

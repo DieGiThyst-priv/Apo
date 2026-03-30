@@ -5,7 +5,7 @@ public class Item : Interactable
     public int ID;
     public string Name;
 
-    public override void Interact(GameObject interactor)
+    public override void Interact()
     {
         InventoryController inventory = FindFirstObjectByType<InventoryController>();
         Sprite itemIcon = GetComponent<Image>().sprite;
