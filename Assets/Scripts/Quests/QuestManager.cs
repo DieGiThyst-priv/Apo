@@ -24,6 +24,7 @@ public class QuestManager : MonoBehaviour
         {
             GamesEventsManager.Instance.questEvents.QuestStateChange(quest);
         }
+        GamesEventsManager.Instance.questEvents.StartQuest("FindCompanionsForAdventure");
     }
 
 
