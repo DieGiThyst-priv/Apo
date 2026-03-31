@@ -28,7 +28,6 @@ public class ZombieBehaviour : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Entered: " + collision.name + " | Tag: " + collision.tag);
         if (collision.CompareTag("Player") || collision.CompareTag("Companion"))
         {
             currentTarget = collision.gameObject;
