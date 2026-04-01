@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 5221038308970450740}
   - component: {fileID: 5187639334488364120}
   - component: {fileID: 3051234050018779017}
-  m_Layer: 0
+  - component: {fileID: 8469795665905519450}
+  m_Layer: 7
   m_Name: CharlieStatic
   m_TagString: Companion
   m_Icon: {fileID: 0}
@@ -76,8 +77,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 128013267
-  m_SortingLayer: 0
+  m_SortingLayerID: 1384650655
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -1439425214247053857, guid: 282381103f0db01449bd28d262aeb6b2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -142,7 +143,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -156,7 +157,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.7730784, y: 1.8894581}
+  m_Size: {x: 2.02, y: 2.1}
   m_EdgeRadius: 0
 --- !u!114 &3051234050018779017
 MonoBehaviour:
@@ -172,3 +173,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 6012471396591401144, guid: a68f2cf4ba8aa4d46817bf1fce170435, type: 3}
   stopDistance: 3
+--- !u!114 &8469795665905519450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 160469061061871881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6aed1ac516f2dfe4d82af164b441816d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterName: Charlie
+  isPlayer: 0
+  isCompanion: 1
+  isZombie: 0
+  gameOverOverlay: {fileID: 0}

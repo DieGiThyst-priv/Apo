@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CharacterStats : Interactable
 {
-    private string characterName;
+    [SerializeField] private string characterName;
     private int maxHealth = 100;
     private int currentHealth;
     private int ammo = 99999999;
@@ -83,6 +83,10 @@ public class CharacterStats : Interactable
             //start timer with visual feedback for revival
             revive();
         }
+        else
+        {
+            RaiseInteraction();
+        }
     }
 
     public bool isCharacterDowned()
@@ -126,5 +130,10 @@ public class CharacterStats : Interactable
     public double getBaseDamage()
     {
         return baseDamage;
+    }
+
+    public string getCharacterName()
+    {
+        return characterName;
     }
 }

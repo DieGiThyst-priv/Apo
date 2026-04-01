@@ -44,3 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1972e7889e231a442850e185d80ca1ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  companion1: Charlie
+  companion2: Jackie

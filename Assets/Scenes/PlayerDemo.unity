@@ -10344,6 +10344,7 @@ GameObject:
   - component: {fileID: 639900080}
   - component: {fileID: 639900079}
   - component: {fileID: 639900082}
+  - component: {fileID: 639900083}
   m_Layer: 5
   m_Name: CurrentQuestPanel
   m_TagString: Untagged
@@ -10456,6 +10457,20 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &639900083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 639900077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66828d5b3aac8454689da6b96f40998a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questNameText: {fileID: 598391055}
+  objectiveText: {fileID: 945864827}
 --- !u!1 &640877380 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1423383505917015330, guid: e012a8139764ee148b8b856e59d709b7, type: 3}
@@ -10471,7 +10486,6 @@ GameObject:
   m_Component:
   - component: {fileID: 750491429}
   - component: {fileID: 750491430}
-  - component: {fileID: 750491431}
   m_Layer: 0
   m_Name: QuestManager
   m_TagString: Untagged
@@ -10506,21 +10520,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e262a4adbd8ac24ebf4ebf689b175c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &750491431
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 750491428}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f149e1ef87d62f846b74ae8bd20ca75a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  questinfoForPoint: {fileID: 0}
-  startPoint: 1
-  endPoint: 0
 --- !u!1 &752471697 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7504323972471661270, guid: 4f5b0e1aca872934299fc83816846535, type: 3}
@@ -11156,10 +11155,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 3583650768034836267, guid: 3eb027902c43014439865f807a6626fa, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1580830513}
-    - targetCorrespondingSourceObject: {fileID: 3583650768034836267, guid: 3eb027902c43014439865f807a6626fa, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1580830519}
+      addedObject: {fileID: 1580830525}
   m_SourcePrefab: {fileID: 100100000, guid: 3eb027902c43014439865f807a6626fa, type: 3}
 --- !u!1001 &1223527471
 PrefabInstance:
@@ -11263,7 +11259,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 160469061061871881, guid: 6a3d17dcba62f83469c76a9c86068f1a, type: 3}
   m_PrefabInstance: {fileID: 1715029759}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1231451029
+--- !u!114 &1231451035
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -11272,9 +11268,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1231451021}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 870565deb53f94e46a775edb5ac9825a, type: 3}
+  m_Script: {fileID: 11500000, guid: 6aed1ac516f2dfe4d82af164b441816d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterName: Charlie
+  isPlayer: 0
+  isCompanion: 1
+  isZombie: 0
+  gameOverOverlay: {fileID: 0}
 --- !u!1 &1374822826
 GameObject:
   m_ObjectHideFlags: 0
@@ -11325,6 +11326,9 @@ MonoBehaviour:
   direction: 4
   teleportTargetPosition: {fileID: 2065955223}
   virtualCamera: {fileID: 0}
+  requireQuest: 1
+  requiredQuest: {fileID: 11400000, guid: 6fb17f1c82b269345b858410dfa7b197, type: 2}
+  requiredState: 3
 --- !u!61 &1374822829
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -12041,7 +12045,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3583650768034836267, guid: 3eb027902c43014439865f807a6626fa, type: 3}
   m_PrefabInstance: {fileID: 1127381254}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1580830513
+--- !u!114 &1580830525
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -12050,24 +12054,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1580830506}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 870565deb53f94e46a775edb5ac9825a, type: 3}
+  m_Script: {fileID: 11500000, guid: 6aed1ac516f2dfe4d82af164b441816d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1580830519
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1580830506}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f149e1ef87d62f846b74ae8bd20ca75a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  questinfoForPoint: {fileID: 11400000, guid: 6fb17f1c82b269345b858410dfa7b197, type: 2}
-  startPoint: 1
-  endPoint: 0
+  characterName: Jackie
+  isPlayer: 0
+  isCompanion: 1
+  isZombie: 0
+  gameOverOverlay: {fileID: 0}
 --- !u!1001 &1701583095
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12366,7 +12360,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 160469061061871881, guid: 6a3d17dcba62f83469c76a9c86068f1a, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1231451029}
+      addedObject: {fileID: 1231451035}
   m_SourcePrefab: {fileID: 100100000, guid: 6a3d17dcba62f83469c76a9c86068f1a, type: 3}
 --- !u!1001 &1765134678
 PrefabInstance:
@@ -13559,6 +13553,9 @@ MonoBehaviour:
   direction: 4
   teleportTargetPosition: {fileID: 569827389}
   virtualCamera: {fileID: 0}
+  requireQuest: 0
+  requiredQuest: {fileID: 0}
+  requiredState: 3
 --- !u!1 &2065955222
 GameObject:
   m_ObjectHideFlags: 0

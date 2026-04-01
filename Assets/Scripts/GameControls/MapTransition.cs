@@ -8,8 +8,11 @@ public class MapTransition : MonoBehaviour
     CinemachineConfiner2D confiner;
     [SerializeField] Direction direction;
     [SerializeField] Transform teleportTargetPosition;
-
     [SerializeField] CinemachineCamera virtualCamera;
+
+    [SerializeField] private bool requireQuest = false;
+    [SerializeField] private QuestInfoSO requiredQuest;
+    [SerializeField] private QuestState requiredState = QuestState.CAN_FINISH;
 
     enum Direction {up, down, left, right, teleport};
 
@@ -19,14 +22,6 @@ public class MapTransition : MonoBehaviour
         virtualCamera = FindFirstObjectByType<CinemachineCamera>();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            FadeTransition(collision.gameObject);
-        }
-    }
-
     async void FadeTransition(GameObject player)
     {
         await ScreenFader.Instance.FadeOut();
@@ -34,17 +29,45 @@ public class MapTransition : MonoBehaviour
         await ScreenFader.Instance.FadeIn();
     }
 
-private void UpdatePlayerPosition(GameObject player)
-{
-    if(direction == Direction.teleport)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        player.transform.position = teleportTargetPosition.position;
+        if (!collision.CompareTag("Player")) return;
 
-        confiner.BoundingShape2D = mapBoundary;
-        confiner.InvalidateBoundingShapeCache();
+        if (!CanTransition())
+        {
+            Debug.Log("I dont want to leave yet..");
+            return;
+        }
 
-        virtualCamera.PreviousStateIsValid = false; // forces instant camera snap
+        FadeTransition(collision.gameObject);
     }
+
+    private void UpdatePlayerPosition(GameObject player)
+    {
+        if(direction == Direction.teleport)
+        {
+            player.transform.position = teleportTargetPosition.position;
+
+            confiner.BoundingShape2D = mapBoundary;
+            confiner.InvalidateBoundingShapeCache();
+
+            virtualCamera.PreviousStateIsValid = false; // forces instant camera snap
+        }
 }
-    
+
+    public void TriggerTransition(GameObject player)
+    {
+        FadeTransition(player);
+    }
+
+    private bool CanTransition()
+    {
+        if (!requireQuest) return true;
+
+        QuestManager questManager = FindFirstObjectByType<QuestManager>();
+        Quest quest = questManager.GetQuestById(requiredQuest.id);
+
+        return quest.state == requiredState || quest.state == QuestState.FINISHED;
+    }
+
 }

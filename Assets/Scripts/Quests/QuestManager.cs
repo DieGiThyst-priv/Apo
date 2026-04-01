@@ -24,14 +24,13 @@ public class QuestManager : MonoBehaviour
         {
             GamesEventsManager.Instance.questEvents.QuestStateChange(quest);
         }
-        GamesEventsManager.Instance.questEvents.StartQuest("FindCompanionsForAdventure");
+        GamesEventsManager.Instance.questEvents.StartQuest("FindCompanionsForAdventure"); //will have to be changed
     }
 
 
     private void Awake()
     {
         questMap = CreateQuestMap();
-        Quest quest = GetQuestById("FindCompanionsForAdventure");
     }
 
     private void ChangeQuestState(string id, QuestState state)
@@ -118,7 +117,7 @@ public class QuestManager : MonoBehaviour
         return idToQuestMap;
     }
 
-    private Quest GetQuestById(string id)
+    public Quest GetQuestById(string id)
     {
         Quest quest = questMap[id];
         if (quest == null)

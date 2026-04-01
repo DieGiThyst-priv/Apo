@@ -7,6 +7,7 @@ public class InteractionEvents
 
     public void Interact(Interactable interactable)
     {
+        Debug.Log("Interacted with: " + interactable.name);
         if (OnInteract != null)
             OnInteract(interactable);
     }

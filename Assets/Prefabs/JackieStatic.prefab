@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 102706923459544962}
   - component: {fileID: 8070688610411993563}
   - component: {fileID: 8941152678690681992}
+  - component: {fileID: 1960553561126198165}
   m_Layer: 0
   m_Name: JackieStatic
   m_TagString: Companion
@@ -76,8 +77,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 128013267
-  m_SortingLayer: 0
+  m_SortingLayerID: 1384650655
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -4980382257362871100, guid: f3e3dd4d29ce6fa48b49ba50febd5afc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -156,11 +157,11 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.0053100586, y: -0.90621436}
+  m_Offset: {x: 0.0058073997, y: 0.010976493}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -170,5 +171,22 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.81834126, y: 0.22646928}
+  m_Size: {x: 0.92951584, y: 2.060851}
   m_EdgeRadius: 0
+--- !u!114 &1960553561126198165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3583650768034836267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6aed1ac516f2dfe4d82af164b441816d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterName: Jackie
+  isPlayer: 0
+  isCompanion: 1
+  isZombie: 0
+  gameOverOverlay: {fileID: 0}
