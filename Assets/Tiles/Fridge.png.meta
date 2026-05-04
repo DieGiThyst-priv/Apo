@@ -150,8 +150,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a3991254316ee6e4cbc016822a5dbdad
-      internalID: 1937457215
+      spriteID: d550b457f62252b46aaed7bff385663d
+      internalID: -1635490137
       vertices: []
       indices: 
       edges: []
@@ -160,7 +160,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: afc8564b29cd4524ba47c9fa71c0b575
+    spriteID: e4b30ab7ce151b846a586f1dc30fc2b7
     internalID: 0
     vertices: []
     indices: 
@@ -171,7 +171,7 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       Fridge_0: -787681131013791189
-      Fridge_1: 1937457215
+      Fridge_1: -1635490137
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
